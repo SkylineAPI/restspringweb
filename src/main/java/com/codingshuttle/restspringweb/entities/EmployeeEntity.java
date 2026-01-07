@@ -2,12 +2,20 @@ package com.codingshuttle.restspringweb.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "employee")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmployeeEntity {
 
     @Id
