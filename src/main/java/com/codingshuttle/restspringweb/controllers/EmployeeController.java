@@ -33,7 +33,7 @@ public class EmployeeController {
 
     //path variable
     @GetMapping("/{employeeId}")
-    public EmployeeDTO getEmployeeById(@PathVariable(name = "employeeId") Long id){
+    public EmployeeDTO getEmployeeById(@PathVariable(name = "employeeId") Long id) {
 //        return new EmployeeDTO(id, "Yash","skylineapi@gmailcom",27, LocalDate.of(2026,1,6),true);
 
         return employeeService.getEmployeeById(id);
@@ -42,14 +42,14 @@ public class EmployeeController {
 
     @GetMapping
     public List<EmployeeDTO> getAllEmployee(@RequestParam(required = false) Integer age,
-                                               @RequestParam(required = false) String sortBy){
+                                            @RequestParam(required = false) String sortBy) {
 //        return "Hi Age "+age+" "+sortBy;
 
         return employeeService.getAllEmployees();
     }
 
     @PostMapping
-    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
+    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO inputEmployee) {
 //        return "Hello from POST";
 //        inputEmployee.setId(100L);
 //        return inputEmployee;
@@ -57,9 +57,41 @@ public class EmployeeController {
         return employeeService.createNewEmployee(inputEmployee);
     }
 
-    @PutMapping
-    public String updateEmployeeById(){
-        return "Hello from Put";
+    @PutMapping(path = "/{employeeId}")
+    public EmployeeDTO updateEmployeeById(@RequestBody EmployeeDTO employeeDTO, @PathVariable Long employeeId) {
+        return employeeService.updateEmployeeById(employeeId, employeeDTO);
+
     }
 
+    @DeleteMapping(path = "/{employeeId}")
+    public void deleteEmployeeById(@PathVariable Long employeeId) {
+        employeeService.deleteEmployeeById(employeeId);
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
