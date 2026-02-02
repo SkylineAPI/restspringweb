@@ -1,17 +1,15 @@
 package com.codingshuttle.restspringweb.controllers;
 
 import com.codingshuttle.restspringweb.dto.EmployeeDTO;
-import com.codingshuttle.restspringweb.entities.EmployeeEntity;
-import com.codingshuttle.restspringweb.repositories.EmployeeRepository;
 import com.codingshuttle.restspringweb.services.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -45,9 +43,10 @@ public class EmployeeController {
 //        if(employeeDTO == null) return ResponseEntity.notFound().build();
 //        return ResponseEntity.ok(employeeDTO);
         return employeeDTO
-                .map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
 
     @GetMapping
